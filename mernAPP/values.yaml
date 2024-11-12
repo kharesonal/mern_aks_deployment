@@ -1,0 +1,10 @@
+helloService:
+  image: sukhilnair/mern:microservice
+  port: 3001
+
+profileService:
+  image: sukhilnair/mern:microservice
+  port: 3002
+
+frontend:
+  image: sukhilnair/mern:microservice
