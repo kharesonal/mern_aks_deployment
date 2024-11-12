@@ -3,15 +3,13 @@ This document provides a step-by-step guide for deploying a MERN stack applicati
 
 ---
 ## Table of Contents
-1. Prerequisites
-2. Setting Up Azure Kubernetes Service (AKS)
-3. Clone the Repository
-4. Configure Kubernetes Resources
-5. Build Docker Images
-6. Deploy to AKS
-7. Access the Application
-8. Screenshots
-9. Conclusion
+1. [Prerequisites](#prerequisites)
+2. [Setting Up Azure Kubernetes Service (AKS)](#setting-up-azure-kubernetes-service-aks)
+3. [Clone the Repository](#clone-the-repository)
+4. [Build Docker Images](#build-docker-images)
+5. [Deploy to AKS](#deploy-to-aks)
+6. [Access the Application](#access-the-application)
+7. [Conclusion](#conclusion)
 
 ### Prerequisites
 Before you begin, ensure you have the following prerequisites:
