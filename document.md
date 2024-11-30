@@ -63,9 +63,11 @@ Before starting, make sure you have the following set up:
 
 ## Clone the Repository
 
-   `git clone https://github.com/UnpredictablePrashant/SampleMERNwithMicroservices.git
-    cd SampleMERNwithMicroservices
-   `
+   ```
+   git clone https://github.com/UnpredictablePrashant/SampleMERNwithMicroservices.git
+   
+   cd SampleMERNwithMicroservices
+   ```
 ## Build Docker Images
  
  Navigate to each service folder and build Docker images for the following components:
