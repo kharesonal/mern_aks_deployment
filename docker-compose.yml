@@ -3,7 +3,7 @@ version: '3.3'
 services:
   helloService:
     container_name: backend_helloService
-    image: sukhil-learning:my-app
+    image: sonalsrivastava1189/mernwithmicroservices_in_docker:helloService
     command: helloService
     network_mode: host
     environment:
@@ -11,7 +11,7 @@ services:
 
   profileService:
     container_name: backend_profileService
-    image: sukhil-learning:my-app
+    image: sonalsrivastava1189/mernwithmicroservices_in_docker:profileService
     command: profileService
     network_mode: host
     environment:
@@ -19,6 +19,6 @@ services:
       - MONGO_URL=
   frontend:
     container_name: frontend
-    image: sukhil-learning:my-app
+    image: sonalsrivastava1189/mernwithmicroservices_in_docker:frontend
     command: frontend
     network_mode: host

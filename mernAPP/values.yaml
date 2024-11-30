@@ -1,10 +1,20 @@
 helloService:
-  image: sukhilnair/mern:microservice
-  port: 3001
+  image:
+    repository: sonalsrivastava1189/mernwithmicroservices_in_docker
+    tag: helloService
+  service:
+    port: 3001
 
 profileService:
-  image: sukhilnair/mern:microservice
-  port: 3002
+  image:
+    repository: sonalsrivastava1189/mernwithmicroservices_in_docker
+    tag: profileService
+  service:
+    port: 3002
 
 frontend:
-  image: sukhilnair/mern:microservice
+  image:
+    repository: sonalsrivastava1189/mernwithmicroservices_in_docker
+    tag: frontend
+  service:
+    port: 3000
