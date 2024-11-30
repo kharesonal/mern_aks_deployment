@@ -23,11 +23,11 @@ This document provides a step-by-step guide for deploying a MERN (MongoDB, Expre
 Before starting, make sure you have the following set up:
 
 - **Azure Account**: An active Azure account is required. If you don’t have one, create a free account here.
-- **Azure CLI**: Install the Azure CLI to manage Azure resources from the command line. Refer to the installation guide.
-- **Kubernetes CLI (kubectl)**: Install kubectl for managing and interacting with Kubernetes clusters. Follow the installation guide.
-- **Docker**: Ensure Docker is installed for building and pushing container images. Follow the installation guide.
-- **Node.js and npm**: Install Node.js and npm to build and run the MERN application locally if needed. See the installation guide.
-- **Git**: Install Git to clone the application repository to your local system. Refer to the installation guide.
+- **Azure CLI**: Install the Azure CLI to manage Azure resources from the command line.
+- **Kubernetes CLI (kubectl)**: Install kubectl for managing and interacting with Kubernetes clusters.
+- **Docker**: Ensure Docker is installed for building and pushing container images.
+- **Node.js and npm**: Install Node.js and npm to build and run the MERN application locally if needed.
+- **Git**: Install Git to clone the application repository to your local system.
 
 ## Setting Up Azure Kubernetes Service (AKS)
 
@@ -60,6 +60,10 @@ Before starting, make sure you have the following set up:
    `
     kubectl get nodes
    `
+   
+
+   ![image](https://github.com/user-attachments/assets/dcd93faa-8008-4319-8c6e-642074d12516)
+
 
 ## Clone the Repository
 
