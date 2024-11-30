@@ -1,109 +1,167 @@
-# Deploy a MERN Application using Azure Kubernetes Service (AKS)
-This document provides a step-by-step guide for deploying a MERN stack application on Azure Kubernetes Service (AKS). It outlines all necessary steps, from setting up the environment to deploying the application. Additionally, the README includes instructions on how to configure the necessary files, tools, and resources for deployment, along with relevant screenshots and images that will guide you through the process.
+# Deploying a MERN Application using AKS(Azure kubernetes service)
+                                  
+This document provides a step-by-step guide for deploying a MERN (MongoDB, Express.js, React.js, Node.js) stack application on Azure Kubernetes Service (AKS). It covers all necessary steps, from setting up the environment to accessing the deployed application. Detailed instructions, configurations, and screenshots are provided to help guide you through the process.
 
----
 ## Table of Contents
-1. [Prerequisites](#prerequisites)
-2. [Setting Up Azure Kubernetes Service (AKS)](#setting-up-azure-kubernetes-service-aks)
-3. [Clone the Repository](#clone-the-repository)
-4. [Build Docker Images](#build-docker-images)
-5. [Deploy to AKS](#deploy-to-aks)
-6. [Access the Application](#access-the-application)
-7. [Conclusion](#conclusion)
 
-### Prerequisites
-Before you begin, ensure you have the following prerequisites:
+1. Prerequisites
 
-- Azure Account: You must have an Azure account. If you don’t have one, sign up for a free account here.
-- Azure CLI: Install the Azure CLI for interacting with Azure resources via the command line. Installation guide.
-- Kubernetes CLI (kubectl): Install kubectl to interact with your AKS cluster. Installation guide.
-- Docker: Install Docker to build and push Docker images. Installation guide.
-- Node.js & npm: Ensure that you have Node.js and npm installed for building the MERN stack application locally. Installation guide.
-- Git: Install Git to clone the repository. Installation guide.
+2. Setting Up Azure Kubernetes Service (AKS)
 
-### Setting Up Azure Kubernetes Service (AKS)
-Follow these steps to create and set up an AKS cluster:
+3. Clone the Repository
 
-- Create Resource Group: In the Azure CLI, run the following command to create a resource group:
+4. Build Docker Images
 
-```bash
-az group create --name <your-resource-group> --location eastus
-```
-- Create AKS Cluster: Next, create an AKS cluster in the resource group:
-```bash
-az aks create --resource-group <your-resource-group> --name <aks-cluster-name> --node-count 3 --enable-addons monitoring --generate-ssh-keys --node-vm-size<Node-size>
-```
-- Connect to the AKS Cluster: Once the cluster is created, configure kubectl to interact with your AKS cluster:
-```bash
-az aks get-credentials --resource-group <your-resource-group> --name <aks-cluster-name>
-```
-- Verify the connection to the cluster:
-```bash
-kubectl get nodes
-```
-![image](./SS/image3.png)
+5. Deploy to AKS
 
-![image](./SS/image.png)
+6. Access the Application
 
-### Clone the Repository
-- Clone the MERN application repository:
-```bash
-git clone https://github.com/UnpredictablePrashant/SampleMERNwithMicroservices.git
+7. Conclusion
+
+## Prerequisites
+
+Before starting, make sure you have the following set up:
+
+- **Azure Account**: An active Azure account is required. If you don’t have one, create a free account here.
+- **Azure CLI**: Install the Azure CLI to manage Azure resources from the command line.
+- **Kubernetes CLI (kubectl)**: Install kubectl for managing and interacting with Kubernetes clusters.
+- **Docker**: Ensure Docker is installed for building and pushing container images.
+- **Node.js and npm**: Install Node.js and npm to build and run the MERN application locally if needed.
+- **Git**: Install Git to clone the application repository to your local system.
+
+## Setting Up Azure Kubernetes Service (AKS)
+
+1. **Log in to Azure**:
+
+      `
+       az login
+      `
+
+2. **Create a Resource Group**:
+   
+    `
+      az group create --name <your-resource-group> --location eastus
+    `
+
+4. **Create an AKS Cluster**:
+   
+    `
+     az aks create --resource-group <your-resource-group> --name <aks-cluster-name> --node-count 3 --enable-addons monitoring --generate-ssh-keys --node-vm-size<Node-size>
+    `
+
+5. **Connect to the AKS Cluster**:
+
+    `
+     az aks get-credentials --resource-group <your-resource-group> --name <aks-cluster-name>
+    `
+  
+6. **Verify the connection to the cluster**:
+
+   `
+    kubectl get nodes
+   `
+   
+
+   ![image](https://github.com/user-attachments/assets/dcd93faa-8008-4319-8c6e-642074d12516)
+
+
+## Clone the Repository
+
+   ```
+   git clone https://github.com/UnpredictablePrashant/SampleMERNwithMicroservices.git
+   
+   cd SampleMERNwithMicroservices
+   ```
+## Build Docker Images
+ 
+ Navigate to each service folder and build Docker images for the following components:
+
+ - Hello Service
+ - Profile Service
+ - Frontend
+
+## Hello service:
+
+```
+cd backend/helloService
+
+docker build -t <dockerhub-username>/hello-service .
+
+```
+## Profile service:
+
+```
+cd ../profileService
+
+docker build -t <dockerhub-username>/profile-service .
+```
+## Frontend:
+
+```
+cd ../../frontend
+
+docker build -t <dockerhub-username>/frontend .
 ```
 
-- Navigate into the project directory:
-```bash
-cd SampleMERNwithMicroservices
-```
-### Build Docker Images
-- Build  Docker Image:
-```bash
-docker build -t <your-dockerhub-username>/mern:latest .
-```
-- Push the Images to Docker Hub:
+## Push images to Docker Hub:
 
-    - Log in to Docker Hub:
-```bash
-docker login
 ```
-- Push the frontend and backend images:
-```bash
-docker push <your-dockerhub-username>/mern:latest
+docker push <dockerhub-username>/hello-service
+
+docker push <dockerhub-username>/profile-service
+
+docker push <dockerhub-username>/frontend
+
 ```
-### Deploy to AKS
+
+## Deploy to AKS
+
 - Create Kubernetes Deployments:
 
-    - Deploy your frontend and backend services using the following command:
-```bash
-cd mernAPP
-helm install simple-mern . -n default
-```
+  Deploy your frontend and backend services using the following command:
 
-![image helm](./SS/image2.png)
+  ```
+  cd mernAPP
+  helm install simple-mern . -n default
+  ```
 
-### Access the Application
+## Access the Application
+
 - Once the services are deployed, you can access the application using the port forwarding.
 
-    - Get service name:
+   - Get service name: 
 
-    Run the following command to get the service name of your frontend service:
-```bash
-kubectl get services
-```
+Run the following command to get the service name of your frontend service:
+
+ `
+ kubectl get services
+ `
 
 It will display the frontend service, Portforward it and Access the Application:
-```bash
+
+`
 kubectl port-forward svc/<frontend service name> 3000:3000
-```
+`
 
 Open a browser and navigate to http://localhost to access the frontend.
 
-![image front](./SS/application.png)
 
+![Screenshot 2024-09-26 203116](https://github.com/user-attachments/assets/5af7f457-5ecb-409f-a5ee-f25657e5ca43)
 
 ### Conclusion
-You have successfully deployed a MERN stack application on Azure Kubernetes Service (AKS). This deployment provides a scalable, reliable environment for your application and takes advantage of the powerful features of AKS, such as auto-scaling and monitoring. 
 
-### Notes:
+You have successfully deployed a MERN stack application on Azure Kubernetes Service (AKS). This deployment provides a scalable, reliable environment for your application and takes advantage of the powerful features of AKS, such as auto-scaling and monitoring.
+
+Notes:
+
 - Ensure you provide appropriate images at the relevant sections where the guide instructs.
-- Replace placeholder ```<docker-image-name>```, ```<your-dockerhub-username>```, and ```<aks-cluster-name>``` with the actual values you use in your deployment process.
+- Replace placeholder <docker-image-name>, <your-dockerhub-username>, and <aks-cluster-name> with the actual values you use in your deployment process.
+
+
+
+
+
+
+
+
+
